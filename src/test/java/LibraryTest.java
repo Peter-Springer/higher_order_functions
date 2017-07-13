@@ -146,4 +146,19 @@ public class LibraryTest {
         assertEquals(Arrays.asList("bar"),result);
     }
 
+    @Test
+    public void returnPluckReturnMultipleArgumentWithMultipleGiveListMap(){
+        Map<String,String> property1= new HashMap<>();
+        property1.put("foo","bar");
+        Map<String,String> property2= new HashMap<>();
+        property2.put("foo","ski");
+
+        List<Map<String,String>> a1 = new ArrayList<>();
+        a1.add(property1);
+        a1.add(property2);
+        String a2 = "foo";
+        List<String> result = Library.pluck(a1, a2);
+        assertEquals(Arrays.asList("bar","ski"),result);
+    }
+
 }

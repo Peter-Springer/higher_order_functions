@@ -53,7 +53,7 @@ public class Library {
         throw new IllegalArgumentException();
         }
         return plucks.stream()
-                .map((str) ->  str.containsKey(property) ?  str.get(property): "")
+                .map((str) ->  str.get(property))
                 .collect(Collectors.toList());
     }
 }
