@@ -18,7 +18,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void removeEvenReturnEmptyListWithGivenEmplyList(){
+    public void removeEvenReturnEmptyListWithGivenEmplyList() {
 
         List<Integer> actual = Library.removeEven(Collections.emptyList());
 
@@ -26,7 +26,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void removeEvenReturnsSameListGivenOneOdd(){
+    public void removeEvenReturnsSameListGivenOneOdd() {
 
         List<Integer> actual = Library.removeEven(Arrays.asList(1));
 
@@ -34,7 +34,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void removeEvenReturnsEmptyListGivenOneEven(){
+    public void removeEvenReturnsEmptyListGivenOneEven() {
         List<Integer> actual = Library.removeEven(Arrays.asList(2));
 
         assertTrue(actual.isEmpty());
@@ -49,23 +49,24 @@ public class LibraryTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void removeSwiftFoxGivenNull(){
+    public void removeSwiftFoxGivenNull() {
         Library.removeSwiftFox(null);
     }
+
     @Test
-    public void removeSwiftFoxGivenEmptyListString(){
+    public void removeSwiftFoxGivenEmptyListString() {
         List<String> result = Library.removeSwiftFox(new ArrayList<String>());
         assertTrue(result.isEmpty());
 
     }
 
     @Test
-    public void removeSwiftFoxFromGivenList(){
+    public void removeSwiftFoxFromGivenList() {
         List<String> result = Library.removeSwiftFox(Arrays.asList("Kit Fox", "Swift Fox"));
-        assertEquals(Arrays.asList("Kit Fox"),result);
+        assertEquals(Arrays.asList("Kit Fox"), result);
     }
 
-    @Test (expected = IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void findAdultThrowsExceptionWhenGivenNull() {
         Library.findAdult(null);
     }
@@ -82,7 +83,67 @@ public class LibraryTest {
         List<Person> test = new ArrayList<>();
         test.add(person1);
         List<Person> result = Library.findAdult(test);
-        assertEquals(Arrays.asList({ "John", "Smith",32}),result);
+        assertEquals(Arrays.asList(person1), result);
 
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void oddOrEvenThrowsExceptionWhenGivenNull() {
+        Library.oddOrEven(null);
+    }
+
+    @Test
+    public void oddOrEvenThrowsEmptyListGivenEmptyListString() {
+        List<String> result = Library.oddOrEven(Collections.emptyList());
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    public void oddOrEvenReturnsOddWhenGivenOddInt(){
+        List<Integer> temp = Arrays.asList(1);
+        List<String> result = Library.oddOrEven(temp);
+
+        assertEquals(Collections.singletonList("odd"),result);
+    }
+
+    @Test
+    public void oddOrEvenReturnsEvenWhenGivenEvenInt() {
+        List<Integer> temp = Arrays.asList(2);
+        List<String> result = Library.oddOrEven(temp);
+
+        assertEquals(Collections.singletonList("even"), result);
+    }
+
+    @Test
+    public void oddOrEvenReturnsWhenGivenListInt() {
+        List<Integer> temp = Arrays.asList(1,2,3,4);
+        List<String> result = Library.oddOrEven(temp);
+
+        assertEquals(Arrays.asList("odd","even","odd","even"), result);
+    }
+
+
+    @Test(expected = IllegalArgumentException.class)
+    public void returnPluckThrowExceptionWithGivenNull(){
+        Library.pluck(null,null);
+    }
+    @Test(expected = IllegalArgumentException.class)
+    public void returnPluckReturnEmptyWithGivenEmpty(){
+        List<String> result = Library.pluck(Collections.emptyList(),null);
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    public void returnPluckReturnOneArgumentWithOneGiveListMap(){
+        Map<String,String> property= new HashMap<>();
+        property.put("foo","bar");
+        //property.put("foo","ski");
+
+        List<Map<String,String>> a1 = new ArrayList<>();
+        a1.add(property);
+        String a2 = "foo";
+        List<String> result = Library.pluck(a1, a2);
+        assertEquals(Arrays.asList("bar"),result);
+    }
+
 }

@@ -1,6 +1,5 @@
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.security.Key;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /*
@@ -36,4 +35,26 @@ public class Library {
             throw new IllegalArgumentException();
         return personList;
     }
+
+    public static List<String> oddOrEven(List<Integer> numberType) {
+        if (null == numberType) {
+        throw new IllegalArgumentException();
+    }
+        return numberType.isEmpty() ? Collections.emptyList() :
+                numberType
+                        .stream()
+                        .map((number) -> number %2 ==0 ? "even" : "odd" )
+                        .collect(Collectors.toList());
+
+    }
+
+    public static List<String> pluck(List<Map<String,String>> plucks,String property) {
+        if (null == plucks || null == property || plucks.isEmpty() || property.isEmpty()) {
+        throw new IllegalArgumentException();
+        }
+        return plucks.stream()
+                .map((str) ->  str.containsKey(property) ?  str.get(property): "")
+                .collect(Collectors.toList());
+    }
 }
+
