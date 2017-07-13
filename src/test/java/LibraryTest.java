@@ -161,6 +161,41 @@ public class LibraryTest {
         assertEquals(Arrays.asList("bar","ski"),result);
     }
 
-    //test
+    @Test (expected = IllegalArgumentException.class)
+    public void joinThrowsExceptionWhenGivenNull() {
+        Library.join(null,null);
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void joinReturnsEmptyList() {
+        List<String> result = new ArrayList<>();
+        Library.join(result,null);
+        assertTrue(result.isEmpty());
+    }
+    @Test
+    public void joinReturnsStringWithoutDelimiter() {
+        List<String> result = new ArrayList<>();
+        result.add("hello");
+        String res = Library.join(result);
+        assertEquals("hello",res);
+
+    }
+    @Test
+    public void joinReturnsStringWithDelimiter() {
+        List<String> result = new ArrayList<>();
+        result.add("hello");
+        result.add("obye");
+        String res = Library.join(result,"o");
+        assertEquals("helloobye",res);
+
+    }
+
+    @Test
+    public void joinReturnsTheStringsConcatenatedTogetherWhenMultipleArePassedInAndNoDelimeter() {
+        List<String> stringArray = Arrays.asList("this", "is", "a", "sentence");
+
+        String result = Library.join(stringArray);
+        assertEquals("this is a sentence", result);
+    }
 
 }

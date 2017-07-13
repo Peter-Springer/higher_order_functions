@@ -56,5 +56,26 @@ public class Library {
                 .map((str) ->  str.get(property))
                 .collect(Collectors.toList());
     }
+
+    public static String join(List<String> strings, String delimiter) {
+        if(null == strings || strings.isEmpty())
+        throw new IllegalArgumentException("");
+        return strings.stream()
+                .reduce((str, del) -> str + del)
+                .orElse(" ");
+
+    }
+
+    public static String join(List<String> strings) {
+        if(null == strings || strings.isEmpty()) {
+            throw new IllegalArgumentException("");
+        }
+        return strings.stream()
+                      .reduce((str, cur) ->  str + " " + cur)
+                      .orElse("");
+
+    }
+
+
 }
 
